@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "articles#index"
   resources :articles
+  post 'search', to: 'search#index', as: :search
+  post 'search/suggestions', to: 'search#suggestions', as: :search_suggestions
+  get 'recent_searches_by_user', to: 'search#recent_searches_by_user', as: :recent_searches_by_user
 end
