@@ -14,7 +14,9 @@ export default class extends Controller {
 
   handleClickOutside(event) {
     if (!this.element.contains(event.target)) {
-      this.hideSuggestions()
+      this.suggestionsTarget.classList.add('hidden')
+    } else {
+      this.suggestionsTarget.classList.remove('hidden')
     }
   }
 
@@ -30,10 +32,11 @@ export default class extends Controller {
 
   requestSuggestions(query, url) {
     if (query.length === 0) {
-      this.hideSuggestions()
+      this.suggestionsTarget.classList.add('hidden')
       return
+    } else {
+      this.suggestionsTarget.classList.remove('hidden')
     }
-    this.showSuggestions()
     fetch(url, {
       method: "POST",
       headers: {
@@ -44,13 +47,5 @@ export default class extends Controller {
     }).then((res) => res.text().then((html) => {
       this.suggestionsTarget.innerHTML = html
     }))
-  }
-
-  hideSuggestions() {
-    this.suggestionsTarget.classList.add('hidden')
-  }
-
-  showSuggestions() {
-    this.suggestionsTarget.classList.remove('hidden')
   }
 }
