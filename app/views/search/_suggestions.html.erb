@@ -1,0 +1,9 @@
+<% if results.any? %>
+  <div class="bg-white border border-gray-300 rounded-lg shadow-md w-full absolute z-10">
+    <% results.each do |article| %>
+      <div class="px-4 py-3 hover:bg-gray-100">
+        <%= link_to article.title, article %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

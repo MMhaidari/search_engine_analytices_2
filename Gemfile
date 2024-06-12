@@ -66,9 +66,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "searchkick"
+group :development, :test do
+  gem 'rspec-rails', '~> 6.1.0'
+end
 
-gem "elasticsearch"
 gem "algoliasearch-rails"
 gem 'turbo-rails'
 gem "faker"
