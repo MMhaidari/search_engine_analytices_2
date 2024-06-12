@@ -1,3 +1,10 @@
 class Article < ApplicationRecord
-  searchkick word_start: %i[title body]
+  include AlgoliaSearch
+
+  validates :title, presence: true
+  validates :body, presence: true, length: { minimum: 10 }
+
+  algoliasearch do
+    attribute :title, :body
+  end
 end

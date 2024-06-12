@@ -13,5 +13,3 @@ Article.destroy_all
 100.times do
   Article.create(title: Faker::Book.title, body: Faker::Lorem.paragraph(sentence_count: 10))
 end
-
-Article.reindex

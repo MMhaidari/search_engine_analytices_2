@@ -69,7 +69,8 @@ end
 gem "searchkick"
 
 gem "elasticsearch"
-
+gem "algoliasearch-rails"
+gem 'turbo-rails'
 gem "faker"
 
 gem "tailwindcss-rails", "~> 2.6"

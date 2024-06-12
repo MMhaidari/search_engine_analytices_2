@@ -1,0 +1,18 @@
+<div class="container mx-auto p-8">
+  <div class="bg-white rounded-lg shadow-lg p-6">
+    <div class="flex justify-between items-center mb-4">
+      <div>
+        <%= link_to "Back", articles_path, class: "bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+      <h1 class="text-3xl font-bold">Article</h1>
+      <div class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"><%= link_to "Destroy",  article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></div> 
+    </div>
+
+    <div class="mb-4">
+      <%= render @article %>
+    </div>
+  </div>
+</div>
