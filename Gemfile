@@ -71,3 +71,5 @@ gem "searchkick"
 gem "elasticsearch"
 
 gem "faker"
+
+gem "tailwindcss-rails", "~> 2.6"
