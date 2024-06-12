@@ -1,0 +1,14 @@
+  <div class="container mt-4">
+    <div class="bg-white shadow-md rounded-lg">
+      <div class="px-4 py-3 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-800">Recent Searches by <%= current_user.user_ip %>:</h3>
+      </div>
+      <ul class="divide-y divide-gray-200">
+        <% current_user.searches.order(created_at: :desc).limit(5).each do |search| %>
+          <li class="px-4 py-3">
+            <span class="text-gray-800"><%= search.query %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>

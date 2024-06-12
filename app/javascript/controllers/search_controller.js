@@ -14,9 +14,7 @@ export default class extends Controller {
 
   handleClickOutside(event) {
     if (!this.element.contains(event.target)) {
-      this.suggestionsTarget.classList.add('hidden')
-    } else {
-      this.suggestionsTarget.classList.remove('hidden')
+      this.hideSuggestions()
     }
   }
 
@@ -32,11 +30,10 @@ export default class extends Controller {
 
   requestSuggestions(query, url) {
     if (query.length === 0) {
-      this.suggestionsTarget.classList.add('hidden')
+      this.hideSuggestions()
       return
-    } else {
-      this.suggestionsTarget.classList.remove('hidden')
     }
+    this.showSuggestions()
     fetch(url, {
       method: "POST",
       headers: {
@@ -44,8 +41,20 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content
       },
       body: JSON.stringify({ query: query })
-    }).then((res) => res.text().then((html) => {
-      this.suggestionsTarget.innerHTML = html
-    }))
+    }).then((res) => {
+      res.text().then((html) => {
+        console.log(html)
+        this.suggestionsTarget.innerHTML = html
+        this.showSuggestions() // Ensure suggestions are shown after updating the innerHTML
+      })
+    })
+  }
+
+  hideSuggestions() {
+    this.suggestionsTarget.classList.add('hidden')
+  }
+
+  showSuggestions() {
+    this.suggestionsTarget.classList.remove('hidden')
   }
 }

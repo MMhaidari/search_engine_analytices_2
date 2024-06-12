@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between flex-col md:flex-row gap-6 md:gap-0 mb-4">
   <div class="flex flex-col sm:flex-row items-center gap-3">
     <!-- Search form -->
-    <%= form_with(url: search_path, method: :post, data: { controller: "search", action: "keyup->search#suggestions", suggestions_url: search_suggestions_path }) do |form| %>
+    <%= form_with(url: search_path, method: :post, data: { controller: "search", action: "keyup->search#suggestions", suggestions_url: search_suggestions_path, turbo: true }) do |form| %>
       <div class="container mt-4">
         <div class="row">
           <div class="col-md-6 offset-md-3">
@@ -12,7 +12,7 @@
                 </svg>
               </div>
               <%= form.text_field :query, autocomplete: :off, data: { search_target: 'input', action: "blur->search#hideSuggestions" }, placeholder: 'Search...', class: 'block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', id: "search-input" %>
-              <div id="suggestion" data-search-target="suggestions" class="relative mt-2 bg-white border border-gray-300 rounded-lg shadow-md w-full z-10"></div>
+              <div id="suggestions" data-search-target="suggestions" class="relative mt-2 bg-white border border-gray-300 rounded-lg shadow-md w-full absolute z-10 hidden"></div>
             </div>
           </div>
         </div>
@@ -20,8 +20,8 @@
     <% end %>
   </div>
   <div class="flex flex-col sm:flex-row items-center gap-3">
-     <div>
-      <%= link_to "Search Analytics", new_article_path, class: "bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <div>
+      <%= link_to "Search Analytics", recent_searches_by_user_path, class: "bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
     </div>
     <div>
       <%= link_to "New Article", new_article_path, class: "bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
