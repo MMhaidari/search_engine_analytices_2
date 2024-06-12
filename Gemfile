@@ -73,5 +73,5 @@ end
 gem "algoliasearch-rails"
 gem 'turbo-rails'
 gem "faker"
-
+gem 'amatch'
 gem "tailwindcss-rails", "~> 2.6"
