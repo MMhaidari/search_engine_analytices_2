@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   def index
     @results = search_for_articles
-    search_create if query_param.present? # Ensure the search is created as soon as there's a query
+    search_create if query_param.present?
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update('articles', partial: 'articles/articles', locals: { articles: @results })
@@ -14,7 +14,7 @@ class SearchController < ApplicationController
 
   def suggestions
     @results = search_for_articles
-    search_create if query_param.present? # Ensure the search is created as soon as there's a query
+    search_create if query_param.present?
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update('suggestions', partial: 'search/suggestions', locals: { results: @results })
@@ -23,23 +23,19 @@ class SearchController < ApplicationController
     end
   end
 
-  def recent_searches_by_user
-  end    
-
   private
 
   def search_create
     latest_search_record = latest_search
-  
     if latest_search_record.nil? || !matched_articles(latest_search_record.query, query_param)
       Search.create(query: query_param.strip, user: current_user)
     else
       latest_search_record.update(query: query_param)
     end
   end
-  
+
   def latest_search
-    @latest_search ||= Search.latest_search(current_user)
+    Search.where(user: current_user).order(created_at: :desc).first
   end
 
   def query_param
@@ -56,7 +52,7 @@ class SearchController < ApplicationController
     if params[:query].blank?
       Article.all
     else
-      Article.search(params[:query])
+      Article.search_by_title_and_body(params[:query])
     end
   end
 end
