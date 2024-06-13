@@ -71,8 +71,9 @@ group :development, :test do
 end
 
 gem "algoliasearch-rails"
-gem 'turbo-rails'
 gem "faker"
 gem 'amatch'
 gem 'pg_search'
 gem "tailwindcss-rails", "~> 2.6"
+gem 'factory_bot_rails'
+gem 'rails-controller-testing'
