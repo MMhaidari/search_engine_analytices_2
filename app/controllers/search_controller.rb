@@ -23,6 +23,10 @@ class SearchController < ApplicationController
     end
   end
 
+  def recent_searches_by_user
+    @trending_searches = Search.trending
+  end
+
   private
 
   def search_create

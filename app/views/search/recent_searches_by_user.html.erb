@@ -1,17 +1,21 @@
-  <div class="container mt-4">
-  `  <div>
-      <%= link_to "Back", articles_path, class: "bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-    </div>`
-    <div class="bg-white shadow-md rounded-lg">
-      <div class="px-4 py-3 border-b border-gray-200">
-        <h3 class="text-lg font-semibold text-gray-800">Recent Searches by <%= current_user.user_ip %>:</h3>
-      </div>
-      <ul class="divide-y divide-gray-200">
-        <% current_user.searches.order(created_at: :desc).limit(5).each do |search| %>
-          <li class="px-4 py-3">
-            <span class="text-gray-800"><%= search.query %></span>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+<div class="container mx-auto mt-8">
+  <div class="text-center mb-4">
+    <%= link_to "Back", articles_path, class: "bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
   </div>
+  
+  <!-- Trending Searches Partial -->
+  <%= render 'search/trending' %>
+
+  <div class="max-w-xl mx-auto bg-white shadow-md rounded-lg mt-4">
+    <div class="px-4 py-3 border-b border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">Recent Searches by <%= current_user.user_ip %>:</h3>
+    </div>
+    <ul class="divide-y divide-gray-200">
+      <% current_user.searches.order(created_at: :desc).limit(5).each do |search| %>
+        <li class="px-4 py-3">
+          <span class="text-gray-800"><%= search.query %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

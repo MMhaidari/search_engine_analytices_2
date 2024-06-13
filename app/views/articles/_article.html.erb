@@ -1,4 +1,8 @@
-<div class="border rounded-lg p-4 shadow-md">
-  <h2 class="text-xl font-semibold mb-2"><%= link_to article.title, article %></h2>
-  <p class="text-gray-700"><%= article.body %></p>
+<div class="max-w-xl mx-auto bg-white shadow-md rounded-lg mb-4 p-4 hover:shadow-lg hover:bg-gray-50 transition duration-300">
+  <%= link_to article_path(article), class: "block no-underline" do %>
+    <div class="border rounded-lg p-4">
+      <h2 class="text-xl font-semibold mb-2 text-gray-700 hover:text-blue-800 transition duration-300"><%= article.title %></h2>
+      <p class="text-gray-700"><%= article.body.truncate(300) %></p>
+    </div>
+  <% end %>
 </div>

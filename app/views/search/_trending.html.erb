@@ -1,0 +1,20 @@
+<div class="container mx-auto mt-8">
+  <div class="max-w-xl mx-auto bg-white shadow-md rounded-lg mb-4">
+    <div class="px-4 py-3 border-b border-gray-200 text-center">
+      <h3 class="text-lg font-semibold text-gray-800">Trending Searches:</h3>
+    </div>
+    <ul class="divide-y divide-gray-200">
+      <% if @trending_searches.present? %>
+        <% @trending_searches.each do |search| %>
+          <li class="px-4 py-3">
+            <span class="text-gray-800"><%= search.query %> (<%= search.search_count %> searches)</span>
+          </li>
+        <% end %>
+      <% else %>
+        <li class="px-4 py-3">
+          <span class="text-gray-800">No trending searches found.</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
