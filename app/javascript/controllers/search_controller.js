@@ -15,8 +15,6 @@ export default class extends Controller {
   handleClickOutside(event) {
     if (!this.element.contains(event.target)) {
       this.suggestionsTarget.classList.add('hidden')
-    } else {
-      this.suggestionsTarget.classList.remove('hidden')
     }
   }
 
@@ -44,8 +42,10 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content
       },
       body: JSON.stringify({ query: query })
-    }).then((res) => res.text().then((html) => {
-      this.suggestionsTarget.innerHTML = html
-    }))
+    }).then((res) => {
+      res.text().then((html) => {
+        this.suggestionsTarget.innerHTML = html
+      })
+    })
   }
 }
